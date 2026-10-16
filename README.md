@@ -1,7 +1,7 @@
 # 开源生态洞察与个人参与路径探讨
 
-> 个人技术调研与工程实践报告 · 方向 A（商业与合规）  
-> 作者：何毅 | 华东交通大学 软件工程
+> 个人技术调研与工程实践报告 · 方向 A（商业与合规）
+> 作者：何泰发 | 华东交通大学 软件工程
 
 ---
 
@@ -19,16 +19,16 @@
 
 理解许可证只需抓住两个变量：**传染范围**（链接或修改后是否必须开源）与**触发条件**（什么动作才产生义务）。
 
-| 许可证                    | 传染范围           | 闭源分发      | 专利明示授权            | 自建 SaaS      | 商业风险         |
-| ---------------------- | -------------- | --------- | ----------------- | ------------ | ------------ |
-| MIT / BSD-3-Clause     | 无              | ✅ 允许      | ❌ 无明示条款           | ✅ 允许         | 极低           |
-| Apache-2.0             | 无              | ✅ 允许      | ✅ 授予 + 专利报复条款     | ✅ 允许         | 低（保留 NOTICE） |
-| MPL-2.0                | 文件级            | ✅ 未改文件可闭源 | ✅                 | ✅            | 中低           |
-| LGPL-2.1 / 3.0         | 库级             | ✅ 动态链接可闭源 | 仅 v3 有            | ✅            | 中            |
-| GPL-2.0                | 强（进程级）         | ❌ 须开源衍生作品 | ❌ 无明示条款           | ✅ 未构成分发      | 高            |
-| GPL-3.0                | 强              | ❌ 同上      | ✅ + 反 Tivoization | ✅ 未构成分发      | 高            |
-| AGPL-3.0               | 强 + 网络条款 §13   | ❌         | ✅                 | ❌ 须向网络用户提供源码 | 极高           |
-| SSPL / BUSL-1.1 / ELv2 | "源可用"，非 OSI 开源 | 受限        | —                 | 受限，禁做竞品托管    | 极高           |
+| 许可证 | 传染范围 | 闭源分发 | 专利明示授权 | 自建 SaaS | 商业风险 |
+| --- | --- | --- | --- | --- | --- |
+| MIT / BSD-3-Clause | 无 | ✅ 允许 | ❌ 无明示条款 | ✅ 允许 | 极低 |
+| Apache-2.0 | 无 | ✅ 允许 | ✅ 授予 + 专利报复条款 | ✅ 允许 | 低（保留 NOTICE） |
+| MPL-2.0 | 文件级 | ✅ 未改文件可闭源 | ✅ | ✅ | 中低 |
+| LGPL-2.1 / 3.0 | 库级 | ✅ 动态链接可闭源 | 仅 v3 有 | ✅ | 中 |
+| GPL-2.0 | 强（进程级） | ❌ 须开源衍生作品 | ❌ 无明示条款 | ✅ 未构成分发 | 高 |
+| GPL-3.0 | 强 | ❌ 同上 | ✅ + 反 Tivoization | ✅ 未构成分发 | 高 |
+| AGPL-3.0 | 强 + 网络条款 §13 | ❌ | ✅ | ❌ 须向网络用户提供源码 | 极高 |
+| SSPL / BUSL-1.1 / ELv2 | "源可用"，非 OSI 开源 | 受限 | — | 受限，禁做竞品托管 | 极高 |
 
 三条最容易被工程团队误判的差异：
 
@@ -61,7 +61,7 @@ SBOM（软件物料清单）是机器可读的软件成分清单，记录组件�
 
 ### 1.3 GPL 进程隔离：用架构换合规空间
 
-GPL 的义务&#x7531;**"分发"**&#x4E0E;**"衍生作品"**&#x4E24;个要件共同触发；把两个独立程序放在一起分发属于**聚合（mere aggregation）**，不触发传染。这就是进程隔离策略的全部法律地基。按风险从低到高：
+GPL 的义务由**"分发"**与**"衍生作品"**两个要件共同触发；把两个独立程序放在一起分发属于**聚合（mere aggregation）**，不触发传染。这就是进程隔离策略的全部法律地基。按风险从低到高：
 
 1. **独立进程 + 标准协议**：GPL 组件作为独立可执行文件运行，闭源主程序通过 REST / Socket / 管道通信，进程边界是最清晰的"非衍生作品"证据。
 2. **命令行调用**：把 GPL 工具当 CLI 子进程使用，只交换文件与标准输入输出，不链接其内部符号。
@@ -85,12 +85,46 @@ flowchart TB
 
 ---
 
+## 二、个人参与路径与工程实操
 
+### 2.1 软工学子四阶段开源成长计划
 
-**PR 链接**：<https://github.com/\&lt;org\&gt;/\&lt;repo\&gt;/pull/\&lt;number>>　  
+| 阶段 | 时间 | 角色 | 核心动作 | 量化产出 | 自检标准 |
+| --- | --- | --- | --- | --- | --- |
+| ① 非代码贡献 | 大一下—大二上 | 观察者→贡献者 | 修文档错别字、补链接、翻译 README/UI 文案、复现 bug 提规范 issue、答 Discussion | ≥2 个 merged PR | 能独立走通 Fork→PR 全流程，看懂 CI 失败日志 |
+| ② good first issue | 大二下—大三上 | 贡献者 | 修小 bug、补单元测试、改进 CI、整理 CHANGELOG | ≥5 个 merged PR | 本地能跑通测试，reviewer 只提 1—2 轮意见即通过 |
+| ③ 模块责任人 | 大三下—大四上 | Reviewer / Triager | 独立承接 feature、参与 code review、写 release note、认领 issue 分类 | 进入 CONTRIBUTORS 或 reviewer 名单 | 能对他人 PR 提出有价值意见并推动合并 |
+| ④ 公开影响力 | 大四及以后 | Maintainer | 主导子模块或发起个人项目、写博客做分享、带新人、竞选 PMC/TSC | 文章或演讲被引用，形成个人技术品牌 | 你的 commit 与评论被社区当作决策依据 |
+
+**选项目的 checklist**：近 3 个月有提交、`good first issue` 存量充足、有清晰 CONTRIBUTING 与行为准则、issue 一周内响应、许可证为宽松型（别把学习时间绑在随时可能改许可的源可用项目上）。
+
+### 2.2 实操凭证：一次标准化的开源协同动作
+
+本次实操在 GitHub 完成 **Fork → Branch → Commit → PR → Merge** 全链路，贡献类型为**文档修复**：
+
+```bash
+# 1. Fork 后在本地克隆自己的副本，并挂上上游仓库
+git clone https://github.com/<me>/<repo>.git && cd <repo>
+git remote add upstream https://github.com/<org>/<repo>.git
+
+# 2. 切分支：命名遵循 <type>/<短描述>
+git checkout -b docs/fix-broken-link-in-readme
+
+# 3. 提交：遵循 Conventional Commits，说明"改了什么、为什么"
+git commit -m "docs: fix broken link to configuration guide in README"
+
+# 4. 推送并发起 PR，正文以 Closes #<issue> 自动关联
+git push -u origin docs/fix-broken-link-in-readme
+gh pr create --title "docs: fix broken link to configuration guide" \
+             --body "Closes #123. 修复 README 中指向配置文档的失效链接。"
+```
+
+**PR 链接**：https://github.com/&lt;org&gt;/&lt;repo&gt;/pull/&lt;number&gt;　<!-- 提交前替换为真实链接 -->
 **PR 状态截图**：
 
 ![PR merged screenshot](./images/pr-merged.png)
+
+<!-- 提交前把 GitHub PR 页面截图存为 images/pr-merged.png -->
 
 ---
 
@@ -109,4 +143,4 @@ flowchart TB
 
 ---
 
-*本报告为课程作业成果，采用 MIT 许可证发布，欢迎 issue 与 PR。*
+*本报告为课程作业成果，采用 Apache-2.0 许可证发布，欢迎 issue 与 PR。*
