@@ -100,31 +100,43 @@ flowchart TB
 
 ### 2.2 实操凭证：一次标准化的开源协同动作
 
-本次实操在 GitHub 完成 **Fork → Branch → Commit → PR → Merge** 全链路，贡献类型为**文档修复**：
+本次实操在 GitHub 完成 **Fork → Branch → Commit → PR** 全链路，贡献类型为**文档修复（失效链接）**，目标是一个真实的活跃开源项目。
+
+**选定的目标仓库**：[pingcap/docs-cn](https://github.com/pingcap/docs-cn)（TiDB 中文文档，1834 stars）。从该仓库的 `good first issue` + `help wanted` 标签中锁定 [#17043「文档链接 404」](https://github.com/pingcap/docs-cn/issues/17043)——由文档团队负责人提出，明确指出部分活跃分支仍存在失效链接、欢迎社区提交 PR 修复。
+
+**全链路命令**：
 
 ```bash
-# 1. Fork 后在本地克隆自己的副本，并挂上上游仓库
-git clone https://github.com/<me>/<repo>.git && cd <repo>
-git remote add upstream https://github.com/<org>/<repo>.git
+# 1. Fork 目标仓库到自己名下
+gh repo fork pingcap/docs-cn --clone=false
 
-# 2. 切分支：命名遵循 <type>/<短描述>
-git checkout -b docs/fix-broken-link-in-readme
+# 2. 基于上游 release-6.5 拉一条独立分支，命名遵循 <type>/<描述>
+git checkout -b fix-broken-links-v6-5
 
-# 3. 提交：遵循 Conventional Commits，说明"改了什么、为什么"
-git commit -m "docs: fix broken link to configuration guide in README"
+# 3. 提交：遵循 Conventional Commits，并用 -s 签署 DCO
+git commit -s -m "*: fix remaining broken links in the v6.5 documentation"
 
-# 4. 推送并发起 PR，正文以 Closes #<issue> 自动关联
-git push -u origin docs/fix-broken-link-in-readme
-gh pr create --title "docs: fix broken link to configuration guide" \
-             --body "Closes #123. 修复 README 中指向配置文档的失效链接。"
+# 4. 推送到自己的 Fork，再向上游发起 PR
+git push -u origin fix-broken-links-v6-5
+gh pr create --repo pingcap/docs-cn --base release-6.5   --title "*: fix remaining broken links in the v6.5 documentation"   --body "Fixes the broken links missed by #17030 and #21944. Related issue: #17043"
 ```
 
-**PR 链接**：https://github.com/&lt;org&gt;/&lt;repo&gt;/pull/&lt;number&gt;　<!-- 提交前替换为真实链接 -->
-**PR 状态截图**：
+**修复内容**：4 处失效链接。动手前逐条实测——旧地址全部返回 404、新地址全部返回 200，确认无误后才提交。
 
-![PR merged screenshot](./images/pr-merged.png)
+| 文件 | 原链接（实测 404） | 改为（实测 200） |
+| --- | --- | --- |
+| `develop/dev-guide-build-cluster-in-cloud.md` | `https://brew.sh/index_zh-cn` | `https://brew.sh/zh-cn/` |
+| `dm/dm-faq.md` | `https://support.huaweicloud.com/rds_faq/rds_faq_0210.html` | `https://support.huaweicloud.com/en-us/rds_faq/rds_faq_0210.html` |
+| `_docHome.md` | `.../stable/dev-guide-sample-application-java` | `.../stable/dev-guide-sample-application-java-jdbc` |
+| `_docHome.md` | `.../stable/dev-guide-sample-application-golang` | `.../stable/dev-guide-sample-application-golang-sql-driver` |
 
-<!-- 提交前把 GitHub PR 页面截图存为 images/pr-merged.png -->
+**PR 链接**：https://github.com/pingcap/docs-cn/pull/21984（3 个文件，+4/-4）
+**关联 issue**：Closes #17043
+**提交后状态**：`check` 检查通过、PR 为 MERGEABLE；按项目要求，首次贡献者需签署 CLA 后方可合入。
+
+**PR 页面截图**：
+
+![PR 页面截图](./images/pr-21984.png)
 
 ---
 
