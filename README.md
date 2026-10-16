@@ -96,13 +96,13 @@ flowchart TB
 | ③ 模块责任人 | 大三下—大四上 | Reviewer / Triager | 独立承接 feature、参与 code review、写 release note、认领 issue 分类 | 进入 CONTRIBUTORS 或 reviewer 名单 | 能对他人 PR 提出有价值意见并推动合并 |
 | ④ 公开影响力 | 大四及以后 | Maintainer | 主导子模块或发起个人项目、写博客做分享、带新人、竞选 PMC/TSC | 文章或演讲被引用，形成个人技术品牌 | 你的 commit 与评论被社区当作决策依据 |
 
-**选项目的 checklist**：近 3 个月有提交、`good first issue` 存量充足、有清晰 CONTRIBUTING 与行为准则、issue 一周内响应、许可证为宽松型（别把学习时间绑在随时可能改许可的源可用项目上）。
+**选项目的 checklist**：近 3 个月有提交、`good first issue` 存量充足、有清晰 CONTRIBUTING、issue 一周内响应、许可证为宽松型。
 
 ### 2.2 实操凭证：一次标准化的开源协同动作
 
-本次实操在 GitHub 完成 **Fork → Branch → Commit → PR** 全链路，贡献类型为**文档修复（失效链接）**，目标是一个真实的活跃开源项目。
+本次实操在 GitHub 完成 **Fork → Branch → Commit → PR** 全链路，贡献类型为**文档修复（失效链接）**。
 
-**选定的目标仓库**：[pingcap/docs-cn](https://github.com/pingcap/docs-cn)（TiDB 中文文档，1834 stars）。从该仓库的 `good first issue` + `help wanted` 标签中锁定 [#17043「文档链接 404」](https://github.com/pingcap/docs-cn/issues/17043)——由文档团队负责人提出，明确指出部分活跃分支仍存在失效链接、欢迎社区提交 PR 修复。
+**选定目标**：[pingcap/docs-cn](https://github.com/pingcap/docs-cn)（TiDB 中文文档）。从 `good first issue` 标签中锁定 [#17043「文档链接 404」](https://github.com/pingcap/docs-cn/issues/17043)，该 issue 由文档团队负责人提出，欢迎社区提交 PR 修复各分支残留的失效链接。
 
 **全链路命令**：
 
@@ -121,7 +121,7 @@ git push -u origin fix-broken-links-v6-5
 gh pr create --repo pingcap/docs-cn --base release-6.5   --title "*: fix remaining broken links in the v6.5 documentation"   --body "Fixes the broken links missed by #17030 and #21944. Related issue: #17043"
 ```
 
-**修复内容**：4 处失效链接。动手前逐条实测——旧地址全部返回 404、新地址全部返回 200，确认无误后才提交。
+**修复内容**：4 处失效链接，动手前逐条实测确认——旧地址返回 404、新地址返回 200。
 
 | 文件 | 原链接（实测 404） | 改为（实测 200） |
 | --- | --- | --- |
@@ -132,7 +132,7 @@ gh pr create --repo pingcap/docs-cn --base release-6.5   --title "*: fix remaini
 
 **PR 链接**：https://github.com/pingcap/docs-cn/pull/21984（3 个文件，+4/-4）
 **关联 issue**：Closes #17043
-**提交后状态**：`check` 检查通过、PR 为 MERGEABLE；按项目要求，首次贡献者需签署 CLA 后方可合入。
+**提交后状态**：`check` 通过、PR 可合并；首次贡献者需签署 CLA 后方可合入。
 
 **PR 页面截图**：
 
