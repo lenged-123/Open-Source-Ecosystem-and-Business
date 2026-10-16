@@ -85,39 +85,7 @@ flowchart TB
 
 ---
 
-## 二、个人参与路径与工程实操
 
-### 2.1 软工学子四阶段开源成长计划
-
-| 阶段                 | 时间      | 角色                 | 核心动作                                                     | 量化产出                          | 自检标准                           |
-| ------------------ | ------- | ------------------ | -------------------------------------------------------- | ----------------------------- | ------------------------------ |
-| ① 非代码贡献            | 大一下—大二上 | 观察者→贡献者            | 修文档错别字、补链接、翻译 README/UI 文案、复现 bug 提规范 issue、答 Discussion | ≥2 个 merged PR                | 能独立走通 Fork→PR 全流程，看懂 CI 失败日志   |
-| ② good first issue | 大二下—大三上 | 贡献者                | 修小 bug、补单元测试、改进 CI、整理 CHANGELOG                          | ≥5 个 merged PR                | 本地能跑通测试，reviewer 只提 1—2 轮意见即通过 |
-| ③ 模块责任人            | 大三下—大四上 | Reviewer / Triager | 独立承接 feature、参与 code review、写 release note、认领 issue 分类   | 进入 CONTRIBUTORS 或 reviewer 名单 | 能对他人 PR 提出有价值意见并推动合并           |
-| ④ 公开影响力            | 大四及以后   | Maintainer         | 主导子模块或发起个人项目、写博客做分享、带新人、竞选 PMC/TSC                       | 文章或演讲被引用，形成个人技术品牌             | 你的 commit 与评论被社区当作决策依据         |
-
-**选项目的 checklist**：近 3 个月有提交、`good first issue` 存量充足、有清晰 CONTRIBUTING 与行为准则、issue 一周内响应、许可证为宽松型（别把学习时间绑在随时可能改许可的源可用项目上）。
-
-### 2.2 实操凭证：一次标准化的开源协同动作
-
-本次实操在 GitHub 完成 **Fork → Branch → Commit → PR → Merge** 全链路，贡献类型为**文档修复**：
-
-```bash
-# 1. Fork 后在本地克隆自己的副本，并挂上上游仓库
-git clone https://github.com/<me>/<repo>.git && cd <repo>
-git remote add upstream https://github.com/<org>/<repo>.git
-
-# 2. 切分支：命名遵循 <type>/<短描述>
-git checkout -b docs/fix-broken-link-in-readme
-
-# 3. 提交：遵循 Conventional Commits，说明"改了什么、为什么"
-git commit -m "docs: fix broken link to configuration guide in README"
-
-# 4. 推送并发起 PR，正文以 Closes #<issue> 自动关联
-git push -u origin docs/fix-broken-link-in-readme
-gh pr create --title "docs: fix broken link to configuration guide" \
-             --body "Closes #123. 修复 README 中指向配置文档的失效链接。"
-```
 
 **PR 链接**：<https://github.com/\&lt;org\&gt;/\&lt;repo\&gt;/pull/\&lt;number>>　  
 **PR 状态截图**：
